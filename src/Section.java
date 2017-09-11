@@ -11,9 +11,8 @@ public class Section {
         currentSize = students.size();
     }
 
-    public void addStudent(String first, String last, int year) {
-        Student add = new Student(first,last, year);
-        students.add(add);
+    public void addStudent(Student name) {
+        students.add(name);
     }
 
     public void removeStudent(double id) {
@@ -24,7 +23,7 @@ public class Section {
         }
     }
 
-    public void seatsRemaining() {
+    public void sectionSeatsRemaining() {
         System.out.println(maxSize - currentSize);
     }
 }
