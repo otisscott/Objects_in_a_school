@@ -5,6 +5,7 @@ public class Section {
     String name;
     int maxSize;
     int currentSize;
+    String className;
     ArrayList<Student> students = new ArrayList<>();
     public static ArrayList<Section> sections = new ArrayList<>();
 
@@ -13,6 +14,7 @@ public class Section {
         maxSize = maxClassSize;
         currentSize = students.size();
         sections.add(this);
+        this.className = class_name;
     }
 
     public void addStudent(Student name) {

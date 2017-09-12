@@ -3,7 +3,7 @@ public class Person {
     String first;
     String last;
     public Person(String first_name, String last_name) {
-        first = first_name;
-        last = last_name;
+        this.first = first_name;
+        this.last = last_name;
     }
 }

@@ -52,18 +52,26 @@ public class Input {
                 String[] var = new_student.split(",");
                 String first = var[1];
                 String last = var[2];
-                for (int i = 0; i < students.length; i++) {
-                    if(student[i].first_name == first && student[i].last_name == last) {
-                        for(int j = 0; j < sections.length; j++) {
-                            if(sections[j].class_name == var[3]) {
-                                sections[j].addStudent(student[i]);
+                for (int i = 0; i < Student.students.size(); i++) {
+                    if(Student.students.get(i).first == first && Student.students.get(i).last == last) {
+                        for(int j = 0; j < Section.sections.size(); j++) {
+                            if(Section.sections.get(j).className == var[3]) {
+                                Section.sections.get(j).addStudent(Student.students.get(i));
                             }
                         }
                     }
                 }
                 input = 0;
             } else if (school.nextLine().toLowerCase() == "remove a student from a section") {
-
+                System.out.println("Please enter the ID number and section for the student you want to remove.");
+                String rem_stu = school.nextLine();
+                String[] var = rem_stu.split(",");
+                Double id = Double.parseDouble(var[0]);
+                for(int j = 0; j < Section.sections.size(); j++) {
+                    if(Section.sections.get(j).className == var[1]) {
+                        Section.sections.get(j).removeStudent(id);
+                    }
+                }
                 input = 0;
             } else {
                 System.out.println("Sorry, I didn't recognize that input, please try again.");
