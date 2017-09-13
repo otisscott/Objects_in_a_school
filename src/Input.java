@@ -13,7 +13,6 @@ public class Input {
                 if (var.length == 3) {
                     Student student = new Student(var[0], var[1], Integer.parseInt(var[2]));
                     System.out.println("Created an entry for " + var[0] + " " + var[1]);
-                    input = 0;
                 }
                 else {
                     System.out.println("Sorry, I didn't recognize that input please try again");
@@ -25,7 +24,6 @@ public class Input {
                 if (var.length == 3) {
                     Teacher teacher = new Teacher(var[0], var[1], var[2]);
                     System.out.println("Created an entry for " + var[0] + " " + var[1]);
-                    input = 0;
                 }
                 else {
                     System.out.println("Sorry, I didn't recognize that input please try again");
@@ -37,7 +35,6 @@ public class Input {
                 if(var.length == 4) {
                     Section section = new Section(var[0], var[1], var[2], Integer.parseInt(var[3]));
                     System.out.println("Created an entry for " + var[2]);
-                    input = 0;
                 }
                 else {
                     System.out.println("Sorry, I didn't recognize that input please try again");
@@ -63,7 +60,6 @@ public class Input {
                 if (work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
-                input = 0;
             } else if (new_input1.toLowerCase().equals("remove a student from a section")) {
                 System.out.println("Please enter the ID number and section for the student you want to remove.");
                 String rem_stu = school.nextLine();
@@ -79,7 +75,6 @@ public class Input {
                 if(work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
-                input = 0;
             } else if(new_input1.toLowerCase().equals("check awesomeness levels")) {
                 System.out.println("Please enter the name of the section that you want to check the awesomeness of.");
                 String name = school.nextLine();
@@ -92,6 +87,17 @@ public class Input {
                 }
                 if(work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
+                }
+            } else if(new_input1.toLowerCase().equals("search for a student")) {
+              System.out.println("Please enter the first and last name of the student");
+                String name = school.nextLine();
+                String[] var = name.split(" ");
+                for (int i = 0; i < Student.students.size(); i++) {
+                    if (Student.students.get(i).first.equals(var[0]) && Student.students.get(i).last.equals(var[1])) {
+                        System.out.println("Student successfully found, returning object ID and Awesomeness");
+                        System.out.println(Student.students.get(i).id);
+                        System.out.println(Student.students.get(i).awesomeness);
+                    }
                 }
             } else {
                 System.out.println("Sorry, I didn't recognize that input, please try again.");
