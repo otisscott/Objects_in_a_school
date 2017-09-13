@@ -11,8 +11,8 @@ public class Section {
 
     public Section(String teacher_first, String teacher_last, String class_name, int maxClassSize) {
         Teacher current = new Teacher(teacher_first, teacher_last, class_name);
-        maxSize = maxClassSize;
-        currentSize = students.size();
+        this.maxSize = maxClassSize;
+        this.currentSize = students.size();
         sections.add(this);
         this.className = class_name;
     }
@@ -27,6 +27,15 @@ public class Section {
                 students.remove(i);
             }
         }
+    }
+
+    public void awesomeness() {
+        double awesomeness = 0;
+        for(int i = 0; i < students.size(); i++) {
+            awesomeness += students.get(i).awesomeness;
+        }
+        awesomeness = awesomeness / students.size();
+        System.out.println("The section has an average awesomeness level of " + awesomeness);
     }
 
     public void sectionSeatsRemaining() {

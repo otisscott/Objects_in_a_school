@@ -4,7 +4,7 @@ public class Input {
         Scanner school = new Scanner(System.in);
         int input = 1;
         while (input == 1) {
-            System.out.println("Welcome to your school management system. Would you like to: Create a Student, Create a Teacher, Create a Section, Add a Student to a Section, Remove a Student from a Section?");
+            System.out.println("Welcome to your school management system. Would you like to: Create a Student, Create a Teacher, Create a Section, Add a Student to a Section, Remove a Student from a Section, or Check Awesomeness Levels?");
             String new_input1 = school.nextLine();
             if (new_input1.toLowerCase().equals("create a student")) {
                 System.out.println("Please enter the student's first name, last name, and grade separated by commas.");
@@ -49,14 +49,19 @@ public class Input {
                 String[] var = new_student.split(", ");
                 String first = var[1];
                 String last = var[2];
+                int work = 0;
                 for (int i = 0; i < Student.students.size(); i++) {
-                    if(Student.students.get(i).first == first && Student.students.get(i).last == last) {
+                    if(Student.students.get(i).first.equals(first) && Student.students.get(i).last.equals(last)) {
                         for(int j = 0; j < Section.sections.size(); j++) {
                             if(Section.sections.get(j).className.equals(var[3])) {
                                 Section.sections.get(j).addStudent(Student.students.get(i));
+                                work = 1;
                             }
                         }
                     }
+                }
+                if (work == 0) {
+                    System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
                 input = 0;
             } else if (new_input1.toLowerCase().equals("remove a student from a section")) {
@@ -64,12 +69,30 @@ public class Input {
                 String rem_stu = school.nextLine();
                 String[] var = rem_stu.split(", ");
                 Double id = Double.parseDouble(var[0]);
+                int work = 0;
                 for(int j = 0; j < Section.sections.size(); j++) {
                     if(Section.sections.get(j).className.equals(var[1])) {
                         Section.sections.get(j).removeStudent(id);
+                        work = 1;
                     }
                 }
+                if(work == 0) {
+                    System.out.println("Sorry, I didn't recognize that input, please try again.");
+                }
                 input = 0;
+            } else if(new_input1.toLowerCase().equals("check awesomeness levels")) {
+                System.out.println("Please enter the name of the section that you want to check the awesomeness of.");
+                String name = school.nextLine();
+                int work = 0;
+                for(int i = 0; i < Section.sections.size(); i++) {
+                    if(Section.sections.get(i).className.equals(name)) {
+                        Section.sections.get(i).awesomeness();
+                        work = 1;
+                    }
+                }
+                if(work == 0) {
+                    System.out.println("Sorry, I didn't recognize that input, please try again.");
+                }
             } else {
                 System.out.println("Sorry, I didn't recognize that input, please try again.");
             }
