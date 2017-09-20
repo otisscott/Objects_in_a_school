@@ -7,10 +7,10 @@ public class Section {
     int currentSize;
     String className;
     ArrayList<Student> students = new ArrayList<>();
+    ArrayList<Teacher> teachers = new ArrayList<>();
     public static ArrayList<Section> sections = new ArrayList<>();
 
-    public Section(String teacher_first, String teacher_last, String class_name, int maxClassSize) {
-        Teacher current = new Teacher(teacher_first, teacher_last, class_name);
+    public Section(String class_name, int maxClassSize) {
         this.maxSize = maxClassSize;
         this.currentSize = students.size();
         sections.add(this);
@@ -20,6 +20,8 @@ public class Section {
     public void addStudent(Student name) {
         students.add(name);
     }
+
+    public void addTeacher(Teacher name) { teachers.add(name); }
 
     public void removeStudent(double id) {
         for(int i = 0; i < students.size(); i++) {
