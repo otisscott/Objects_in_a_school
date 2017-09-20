@@ -4,9 +4,10 @@ public class Input {
         Scanner school = new Scanner(System.in);
         int input = 1;
         while (input == 1) {
-            System.out.println("Welcome to your school management system. Would you like to: Create a Student, Create a Teacher, Create a Section, Add a Student to a Section, Remove a Student from a Section, or Check Awesomeness Levels?");
+            System.out.println("Welcome to your school management system. Would you like to: Create a Student (1), Create a Teacher (2), Create a Section (3), Add a Student to a Section (4),");
+            System.out.println("Remove a Student from a Section (5), Check Awesomeness Levels (6), or Search for a Student (7)?");
             String new_input1 = school.nextLine();
-            if (new_input1.toLowerCase().equals("create a student")) {
+            if (Integer.parseInt(new_input1) == 1) {
                 System.out.println("Please enter the student's first name, last name, and grade separated by commas.");
                 String new_student = school.nextLine();
                 String[] var = new_student.split(", ");
@@ -17,7 +18,7 @@ public class Input {
                 else {
                     System.out.println("Sorry, I didn't recognize that input please try again");
                 }
-            } else if (new_input1.toLowerCase().equals("create a teacher")) {
+            } else if (Integer.parseInt(new_input1) == 2) {
                 System.out.println("Please enter the teacher's first name, last name, and subject separated by commas.");
                 String new_teacher = school.nextLine();
                 String[] var = new_teacher.split(", ");
@@ -28,7 +29,7 @@ public class Input {
                 else {
                     System.out.println("Sorry, I didn't recognize that input please try again");
                 }
-            } else if (new_input1.toLowerCase().equals("create a section")){
+            } else if (Integer.parseInt(new_input1) == 3){
                 System.out.println("Please enter the section teachers first name and last name, the subject, and the max occupancy separated by commas.");
                 String new_section = school.nextLine();
                 String[] var = new_section.split(", ");
@@ -40,17 +41,17 @@ public class Input {
                     System.out.println("Sorry, I didn't recognize that input please try again");
                 }
 
-            } else if (new_input1.toLowerCase().equals("add a student to a section")) {
+            } else if (Integer.parseInt(new_input1) == 4) {
                 System.out.println("Please enter the students first and last name, followed by the section name");
                 String new_student = school.nextLine();
                 String[] var = new_student.split(", ");
-                String first = var[1];
-                String last = var[2];
+                String first = var[0];
+                String last = var[1];
                 int work = 0;
                 for (int i = 0; i < Student.students.size(); i++) {
-                    if(Student.students.get(i).first.equals(first) && Student.students.get(i).last.equals(last)) {
+                    if(Student.students.get(i).first.toLowerCase().equals(first.toLowerCase()) && Student.students.get(i).last.toLowerCase().equals(last.toLowerCase())) {
                         for(int j = 0; j < Section.sections.size(); j++) {
-                            if(Section.sections.get(j).className.equals(var[3])) {
+                            if(Section.sections.get(j).className.toLowerCase().equals(var[2].toLowerCase())) {
                                 Section.sections.get(j).addStudent(Student.students.get(i));
                                 work = 1;
                             }
@@ -60,7 +61,7 @@ public class Input {
                 if (work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
-            } else if (new_input1.toLowerCase().equals("remove a student from a section")) {
+            } else if (Integer.parseInt(new_input1) == 5) {
                 System.out.println("Please enter the ID number and section for the student you want to remove.");
                 String rem_stu = school.nextLine();
                 String[] var = rem_stu.split(", ");
@@ -75,7 +76,7 @@ public class Input {
                 if(work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
-            } else if(new_input1.toLowerCase().equals("check awesomeness levels")) {
+            } else if(Integer.parseInt(new_input1) == 6) {
                 System.out.println("Please enter the name of the section that you want to check the awesomeness of.");
                 String name = school.nextLine();
                 int work = 0;
@@ -88,7 +89,7 @@ public class Input {
                 if(work == 0) {
                     System.out.println("Sorry, I didn't recognize that input, please try again.");
                 }
-            } else if(new_input1.toLowerCase().equals("search for a student")) {
+            } else if(Integer.parseInt(new_input1) == 7) {
               System.out.println("Please enter the first and last name of the student");
                 String name = school.nextLine();
                 String[] var = name.split(" ");
